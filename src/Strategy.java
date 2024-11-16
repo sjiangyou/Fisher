@@ -53,6 +53,6 @@ public class Strategy {
             }
         }
 
-        return "H"; // Default action if something goes wrong
+        return "S"; // Default action if something goes wrong
     }
 }
