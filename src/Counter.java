@@ -1,23 +1,20 @@
 public class Counter {
-    public class Main {
-        public static void main(String[] args) {
-            int numberOfDecks = 6;
-            Deck deck = new Deck();
-            deck.shuffle();
-            CardCounter cardCounter = new CardCounter(numberOfDecks);
-    
-            for (int i = 0; i < 52 * numberOfDecks; i++) {
-                Card card = deck.dealCard();
-                if (card == null) {
-                    break;
-                }
-                cardCounter.updateCount(card);
-                System.out.println("Dealt: " + card + ", Running Count: " + cardCounter.getRunningCount());
-            }
-    
-            System.out.println("Final Running Count: " + cardCounter.getRunningCount());
-            System.out.println("True Count: " + cardCounter.getTrueCount());
-        }
+    private int count;
+    public Counter(){
+        this.count = 0;
     }
-    
+    public void updateCount(Card card){
+        try{
+            if(Integer.parseInt(card.getValue()) >= 2 && Integer.parseInt(card.getValue()) <= 6){
+                this.count++;
+            } else if(Integer.parseInt(card.getValue()) == 10 || Integer.parseInt(card.getValue()) == 1){
+                this.count--;
+            }
+        } catch (NumberFormatException e){
+            this.count--;
+        }   
+    }
+    public int getCount(){
+        return this.count;
+    }
 }
